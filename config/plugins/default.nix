@@ -7,6 +7,7 @@
     ./snacks.nix
     ./lualine.nix
     ./treesitter.nix
+    ./transparent.nix
     ./bufferline.nix
   ];
 }
