@@ -1,16 +1,23 @@
 {
   imports = [
     ./lsp.nix
+    ./ufo.nix
     ./cmp.nix
     ./dap.nix
+    ./hop.nix
+    ./lint.nix
+    ./flash.nix
     ./noice.nix
     ./neogit.nix
     ./snacks.nix
     ./lualine.nix
+    ./comment.nix
     ./gitsigns.nix
     ./whichkey.nix
+    ./presence.nix
+    ./toggleterm.nix
     ./treesitter.nix
-    ./transparent.nix
     ./bufferline.nix
+    ./transparent.nix
   ];
 }
