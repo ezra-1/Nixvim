@@ -1,34 +1,33 @@
 { pkgs, ... }:
 
 {
-  # Core modules only
   imports = [
     ./core
-    ./theme
+    ./themes
     ./plugins
   ];
 
-  # Aliases
   viAlias = true;
   vimAlias = true;
 
-  # Leader key
   globals.mapleader = " ";
 
-  # Clipboard (Wayland only)
   clipboard = {
     register = "unnamedplus";
-    providers.wl-copy.enable = true;
+
+    providers = {
+      wl-copy.enable = true;
+      xclip.enable = true;
+    };
   };
 
-  # Plugins
   plugins = {
     persistence.enable = true;
     direnv.enable = true;
     web-devicons.enable = true;
     lastplace.enable = true;
     nvim-autopairs.enable = true;
-
+    markdown-preview.enable = true;
     tmux-navigator.enable = true;
 
     better-escape = {
@@ -37,8 +36,46 @@
     };
 
     zellij = {
-      enable = true;
-      settings.vimTmuxNavigatorKeybinds = true;
+      enable = false;
+
+      settings = {
+        vimTmuxNavigatorKeybinds = true;
+      };
     };
   };
+
+  extraPlugins = with pkgs.vimPlugins; [
+    nui-nvim
+  ];
+
+  extraPackages = with pkgs; [
+    # Utilities
+    fd
+    go
+    gdb
+    tmux-sessionizer
+
+    # Formatters
+    cmake-format
+    nixfmt
+    prettier
+    prettierd
+    ruff
+    rustfmt
+    shfmt
+    stylua
+
+    # Linters
+    commitlint
+    golangci-lint
+    hadolint
+    luajitPackages.luacheck
+    markdownlint-cli
+    yamllint
+
+    # LSP / Debugging
+    asm-lsp
+    delve
+    marksman
+  ];
 }
